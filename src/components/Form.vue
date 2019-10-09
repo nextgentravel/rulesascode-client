@@ -75,8 +75,8 @@
     <div class="col-sm">
       <ul class="list-group">
         <li class="list-group-item" v-bind:class="{ 'list-group-item-success': this.response.vehicles ? this.response.vehicles.vehicle1.vehicle_is_insured['2019-08'] : '', 'list-group-item-danger': this.response.vehicles ? !this.response.vehicles.vehicle1.vehicle_is_insured['2019-08'] : '', }">Vehicle is Insured</li>
-        <li class="list-group-item" v-bind:class="{ 'list-group-item-success': this.response.vehicles ? this.response.vehicles.vehicle1.vehicle_is_insured['2019-08'] : '', 'list-group-item-danger': this.response.vehicles ? !this.response.vehicles.vehicle1.collision_damage_waiver['2019-08'] : '', }">Collision Damage Waiver Coverage</li>
-        <li class="list-group-item" v-bind:class="{ 'list-group-item-success': this.response.vehicles ? this.response.vehicles.vehicle1.vehicle_is_insured['2019-08'] : '', 'list-group-item-danger': this.response.vehicles ? !this.response.vehicles.vehicle1.public_liability_and_property_damage['2019-08'] : '', }">Public Liability and Property Damage Coverage</li>
+        <li class="list-group-item" v-bind:class="{ 'list-group-item-success': this.response.vehicles ? this.response.vehicles.vehicle1.collision_damage_waiver['2019-08'] : '', 'list-group-item-danger': this.response.vehicles ? !this.response.vehicles.vehicle1.collision_damage_waiver['2019-08'] : '', }">Collision Damage Waiver Coverage</li>
+        <li class="list-group-item" v-bind:class="{ 'list-group-item-success': this.response.vehicles ? this.response.vehicles.vehicle1.public_liability_and_property_damage['2019-08'] : '', 'list-group-item-danger': this.response.vehicles ? !this.response.vehicles.vehicle1.public_liability_and_property_damage['2019-08'] : '', }">Public Liability and Property Damage Coverage</li>
       </ul>
     </div>
   </div>
@@ -87,11 +87,14 @@ export default {
   name: 'Form',
   methods: {
     init: function () {
-      // this.state = this.initial;
+      if (this.state.vehicles.vehicle1.procurement_type['2019-08'] === "") {
+        this.state = this.initial;
+      }
+      
     },
     check: function() {
       this.ajaxRequest = true;
-      this.$http.post('http://127.0.0.1:5001/calculate',
+      this.$http.post('http://127.0.0.1:5005/calculate',
         JSON.stringify(this.state),
         function (data, status, request) {
           this.response = JSON.parse(data);
