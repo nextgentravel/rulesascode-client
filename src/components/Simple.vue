@@ -136,7 +136,7 @@ export default {
     check: function() {
       if (this.state.vehicles.vehicle1.procurement_type['2019-08'] !== "") {
         this.ajaxRequest = true;
-        this.$http.post('http://127.0.0.1:5005/calculate',
+        this.$http.post('https://rac-travel-api.herokuapp.com/calculate',
           JSON.stringify(this.state),
           function (data, status, request) {
             this.response = JSON.parse(data);
