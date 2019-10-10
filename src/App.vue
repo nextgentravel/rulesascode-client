@@ -1,5 +1,6 @@
 <template>
-  <div id="app">    
+  <div id="app">
+    <PrototypeBanner />
     <ul class="nav">
       <li class="nav-item">
         <a v-if="simple" class="nav-link" href="#" v-on:click="toggleView">Quiz</a>
@@ -23,6 +24,7 @@
 <script>
 import Form from './components/Form.vue'
 import Simple from './components/Simple.vue'
+import PrototypeBanner from './components/PrototypeBanner.vue'
 export default {
   name: 'app',
   data: function() {
@@ -37,11 +39,14 @@ export default {
   },
   components: {
     Form,
-    Simple
+    Simple,
+    PrototypeBanner,
   }
 }
 </script>
 
 <style>
-
+.nav {
+  margin-top: 50px;
+}
 </style>
